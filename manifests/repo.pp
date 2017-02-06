@@ -12,7 +12,7 @@
 #
 # [*repositories*]
 #   Which repos to include.
-#   Defaults to 'main' 
+#   Defaults to 'openmanage' 
 #
 # [*release*]
 #   Which release to install.
@@ -20,7 +20,7 @@
 #
 # [*key_server*]
 #   Link to the keyserver
-#   Defaults to 'http://pool.sks-keyservers.net'
+#   Defaults to 'pgp.mit.edu'
 #
 # [*key_fingerprint*]
 #   The key fingerprint.
@@ -32,7 +32,7 @@
 #    repository_url  => 'http://linux.dell.com/repo/community/ubuntu'
 #    repositories    => 'openmanage'
 #    release         => $::lsbdistcodename
-#    key_server      => 'http://pool.sks-keyservers.net'
+#    key_server      => 'pgp.mit.edu'
 #    key_fingerprint => '42550ABD1E80D7C1BC0BAD851285491434D8786F'
 #  }
 #
@@ -48,15 +48,19 @@ class srvadmin::repo (
   $repository_url  = 'http://linux.dell.com/repo/community/ubuntu',
   $repositories    = 'openmanage',
   $release         = $::lsbdistcodename,
-  $key_server      = 'http://pool.sks-keyservers.net',
+  $key_server      = 'pgp.mit.edu',
   $key_fingerprint = '42550ABD1E80D7C1BC0BAD851285491434D8786F',
 ) {
-  apt::source { 'srvadmin' :
-    location      => $repository_url,
-    repos         => $repositories,
-    release       => $release, 
-    key           => $key_fingerprint,
-    key_server    => $key_server,
-    include_src   => false,
+
+  apt::key { 'dell-key':
+    id     => $key_fingerprint,
+    server => $key_server,
+  }
+
+  apt::source { 'dell' :
+    location => $repository_url,
+    repos    => $repositories,
+    release  => $release,
+    require  => Apt::Key['dell-key'],
   }
 }
