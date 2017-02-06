@@ -48,7 +48,7 @@ class srvadmin::repo (
   $repository_url  = 'http://linux.dell.com/repo/community/ubuntu',
   $repositories    = 'openmanage',
   $release         = $::lsbdistcodename,
-  $key_server      = 'http://pool.sks-keyservers.net'
+  $key_server      = 'http://pool.sks-keyservers.net',
   $key_fingerprint = '1285491434D8786F',
 ) {
   apt::source { 'srvadmin' :
