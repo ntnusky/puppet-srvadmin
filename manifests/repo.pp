@@ -24,7 +24,7 @@
 #
 # [*key_fingerprint*]
 #   The key fingerprint.
-#   Defaults to '1285491434D8786F'
+#   Defaults to '42550ABD1E80D7C1BC0BAD851285491434D8786F'
 #
 # === Examples
 #
@@ -33,7 +33,7 @@
 #    repositories    => 'openmanage'
 #    release         => $::lsbdistcodename
 #    key_server      => 'http://pool.sks-keyservers.net'
-#    key_fingerprint => '1285491434D8786F'
+#    key_fingerprint => '42550ABD1E80D7C1BC0BAD851285491434D8786F'
 #  }
 #
 # === Authors
@@ -49,7 +49,7 @@ class srvadmin::repo (
   $repositories    = 'openmanage',
   $release         = $::lsbdistcodename,
   $key_server      = 'http://pool.sks-keyservers.net',
-  $key_fingerprint = '1285491434D8786F',
+  $key_fingerprint = '42550ABD1E80D7C1BC0BAD851285491434D8786F',
 ) {
   apt::source { 'srvadmin' :
     location      => $repository_url,
