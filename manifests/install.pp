@@ -16,4 +16,7 @@
 #
 
 class srvadmin::install {
+  package { 'srvadmin-all':
+    ensure => 'present',
+  }
 }
