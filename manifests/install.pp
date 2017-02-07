@@ -16,7 +16,13 @@
 #
 
 class srvadmin::install {
+  # Install srvadmin-all 
   package { 'srvadmin-all':
+    ensure => 'present',
+  }
+
+  # Install libssl-dev, as that apparently is a dependency...
+  package { 'libssl-dev':
     ensure => 'present',
   }
 }
