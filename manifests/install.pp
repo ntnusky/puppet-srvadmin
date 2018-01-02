@@ -16,9 +16,10 @@
 #
 
 class srvadmin::install {
-  # Install srvadmin-all 
+  # Install srvadmin-all
   package { 'srvadmin-all':
-    ensure => 'present',
+    ensure  => 'present',
+    require => Class['apt::update'],
   }
 
   # Install libssl-dev, as that apparently is a dependency...
