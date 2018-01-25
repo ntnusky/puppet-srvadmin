@@ -45,8 +45,8 @@
 # Copyright 2017 Eigil Obrestad, unless otherwise noted.
 #
 class srvadmin::repo (
-  $repository_url  = 'http://linux.dell.com/repo/community/ubuntu',
-  $repositories    = 'openmanage',
+  $repository_url  = "http://linux.dell.com/repo/community/openmanage/910/${::lsbdistcodename}",
+  $repositories    = 'main',
   $release         = $::lsbdistcodename,
   $key_server      = 'pgp.mit.edu',
   $key_fingerprint = '42550ABD1E80D7C1BC0BAD851285491434D8786F',
