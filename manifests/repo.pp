@@ -6,13 +6,9 @@
 #
 # Document parameters here.
 #
-# [*repository_url*]
-#   Where the repository is located. 
-#   Defaults to http://linux.dell.com/repo/community/ubuntu
-#
 # [*repositories*]
 #   Which repos to include.
-#   Defaults to 'openmanage' 
+#   Defaults to 'main'
 #
 # [*release*]
 #   Which release to install.
@@ -20,7 +16,7 @@
 #
 # [*key_server*]
 #   Link to the keyserver
-#   Defaults to 'pgp.mit.edu'
+#   Defaults to 'pool.sks-keyservers.net'
 #
 # [*key_fingerprint*]
 #   The key fingerprint.
@@ -45,7 +41,6 @@
 # Copyright 2017 Eigil Obrestad, unless otherwise noted.
 #
 class srvadmin::repo (
-  $repository_url,
   $repositories    = 'main',
   $release         = $::lsbdistcodename,
   $key_server      = 'pool.sks-keyservers.net',
