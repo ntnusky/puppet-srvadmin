@@ -45,12 +45,20 @@
 # Copyright 2017 Eigil Obrestad, unless otherwise noted.
 #
 class srvadmin::repo (
-  $repository_url  = "http://linux.dell.com/repo/community/openmanage/910/${::lsbdistcodename}",
+  $repository_url,
   $repositories    = 'main',
   $release         = $::lsbdistcodename,
   $key_server      = 'pool.sks-keyservers.net',
   $key_fingerprint = '42550ABD1E80D7C1BC0BAD851285491434D8786F',
 ) {
+
+  case $::lsbdistcodename {
+    'xenial': { $version = '910' }
+    'bionic': { $version = '930' }
+    default:  { fail("${::lsbdistcodename} is not supported.") }
+  }
+
+  $repository_url = "http://linux.dell.com/repo/community/openmanage/${version}/${::lsbdistcodename}"
 
   apt::key { 'dell-key':
     id     => $key_fingerprint,
