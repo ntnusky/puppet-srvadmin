@@ -13,7 +13,7 @@ class srvadmin::repo::redhat {
     ensure   => 'present',
     descr    => $name,
     baseurl  => 'https://linux.dell.com/repo/hardware/dsu/os_independent/',
-    gpgkeys  => join($gpgkeys, ' '),
+    gpgkey   => join($gpgkeys, ' '),
     gpgcheck => '1',
     enabled  => '1',
     exclude  => 'dell-system-update*.i386'
@@ -23,7 +23,7 @@ class srvadmin::repo::redhat {
     ensure     => 'present',
     descr      => $name,
     mirrorlist => 'https://linux.dell.com/repo/hardware/dsu/mirrors.cgi?osname=el$releasever&basearch=$basearch&native=1',
-    gpgkeys    => join($gpgkeys, ' '),
+    gpgkey     => join($gpgkeys, ' '),
     gpgcheck   => '1',
     enabled    => '1',
   }
