@@ -65,5 +65,6 @@ class srvadmin::repo::ubuntu (
     repos    => $repositories,
     release  => $release,
     require  => Apt::Key['dell-key'],
+    notify   => Exec['apt_update'],
   }
 }
