@@ -29,4 +29,10 @@ class srvadmin::install {
   package { $::srvadmin::params::openssldev_package:
     ensure => 'present',
   }
+
+  file { '/usr/local/bin/racadm':
+    ensure  => 'link',
+    soruce  => '/opt/dell/srvadmin/sbin/racadm',
+    require => Package['srvadmin-all'],
+  }
 }
