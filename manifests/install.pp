@@ -32,7 +32,7 @@ class srvadmin::install {
 
   file { '/usr/local/bin/racadm':
     ensure  => 'link',
-    soruce  => '/opt/dell/srvadmin/sbin/racadm',
+    source  => '/opt/dell/srvadmin/sbin/racadm',
     require => Package['srvadmin-all'],
   }
 }
