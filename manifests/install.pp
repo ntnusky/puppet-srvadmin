@@ -16,14 +16,23 @@
 #
 
 class srvadmin::install {
+
+  include ::srvadmin::params
+
   # Install srvadmin-all
   package { 'srvadmin-all':
     ensure  => 'present',
-    require => Class['apt::update'],
+    require => Class['::srvadmin::repo'],
   }
 
   # Install libssl-dev, as that apparently is a dependency...
-  package { 'libssl-dev':
+  package { $::srvadmin::params::openssldev_package:
     ensure => 'present',
+  }
+
+  file { '/usr/local/bin/racadm':
+    ensure  => 'link',
+    target  => '/opt/dell/srvadmin/sbin/racadm',
+    require => Package['srvadmin-all'],
   }
 }
