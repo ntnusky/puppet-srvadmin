@@ -50,6 +50,7 @@ class srvadmin::repo::ubuntu (
   case $::lsbdistcodename {
     'xenial': { $version = '910' }
     'bionic': { $version = '930' }
+    'focal': { $version = '950' }
     default:  { fail("${::lsbdistcodename} is not supported.") }
   }
 
