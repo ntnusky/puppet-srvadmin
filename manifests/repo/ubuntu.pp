@@ -43,7 +43,7 @@
 class srvadmin::repo::ubuntu (
   $repositories    = 'main',
   $release         = $::lsbdistcodename,
-  $key_server      = 'pool.sks-keyservers.net',
+  $key_source      = 'https://linux.dell.com/repo/pgp_pubkeys/0x1285491434D8786F.asc',
   $key_fingerprint = '42550ABD1E80D7C1BC0BAD851285491434D8786F',
 ) {
 
@@ -58,7 +58,7 @@ class srvadmin::repo::ubuntu (
 
   apt::key { 'dell-key':
     id     => $key_fingerprint,
-    server => $key_server,
+    source => $key_source,
   }
 
   apt::source { 'dell' :
