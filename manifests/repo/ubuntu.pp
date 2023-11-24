@@ -35,10 +35,11 @@
 # === Authors
 #
 # Eigil Obrestad <eigil-git@obrestad.org>
+# Lars Erik Pedersen <pedersen.larserik+git@gmail.com>
 #
 # === Copyright
 #
-# Copyright 2017 Eigil Obrestad, unless otherwise noted.
+# Copyright 2017-2023 Eigil Obrestad, unless otherwise noted.
 #
 class srvadmin::repo::ubuntu (
   $repositories    = 'main',
@@ -51,6 +52,7 @@ class srvadmin::repo::ubuntu (
     'xenial': { $version = '910' }
     'bionic': { $version = '930' }
     'focal': { $version = '950' }
+    'jammy': { $version = '11000' }
     default:  { fail("${::lsbdistcodename} is not supported.") }
   }
 
