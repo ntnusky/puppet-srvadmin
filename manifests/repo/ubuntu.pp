@@ -53,6 +53,7 @@ class srvadmin::repo::ubuntu (
     'bionic': { $version = '930' }
     'focal': { $version = '950' }
     'jammy': { $version = '11000' }
+    'noble': { $version = 'iSM/5400' }
     default:  { fail("${::lsbdistcodename} is not supported.") }
   }
 

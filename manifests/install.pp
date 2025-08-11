@@ -19,20 +19,36 @@ class srvadmin::install {
 
   include ::srvadmin::params
 
-  # Install srvadmin-all
-  package { 'srvadmin-all':
-    ensure  => 'present',
-    require => Class['::srvadmin::repo'],
-  }
+  $distro = $facts['os']['release']['major']
 
-  # Install libssl-dev, as that apparently is a dependency...
-  package { $::srvadmin::params::openssldev_package:
-    ensure => 'present',
-  }
+  if ( versioncmp($distro, '22.04') == 1 ) {
+    package { 'dcism-osc':
+      ensure  => 'present',
+      require => Class['::srvadmin::repo'],
+    }
 
-  file { '/usr/local/bin/racadm':
-    ensure  => 'link',
-    target  => '/opt/dell/srvadmin/sbin/racadm',
-    require => Package['srvadmin-all'],
+    package { 'dcism':
+      ensure  => 'present',
+      require => Class['::srvadmin::repo'],
+      after   => Package['dcism-osc']
+    }
+  } else {
+
+    # Install srvadmin-all
+    package { 'srvadmin-all':
+      ensure  => 'present',
+      require => Class['::srvadmin::repo'],
+    }
+
+    # Install libssl-dev, as that apparently is a dependency...
+    package { $::srvadmin::params::openssldev_package:
+      ensure => 'present',
+    }
+
+    file { '/usr/local/bin/racadm':
+      ensure  => 'link',
+      target  => '/opt/dell/srvadmin/sbin/racadm',
+      require => Package['srvadmin-all'],
+    }
   }
 }
