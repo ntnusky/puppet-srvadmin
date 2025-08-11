@@ -24,7 +24,7 @@ class srvadmin::install {
   if ( versioncmp($distro, '22.04') == 1 ) {
     package { 'dcism-osc':
       ensure  => 'present',
-      require => Class['::srvadmin::repo'],
+      require => [ Class['::srvadmin::repo'], Exec['apt_update'] ],
     }
 
     package { 'dcism':
@@ -36,7 +36,7 @@ class srvadmin::install {
     # Install srvadmin-all
     package { 'srvadmin-all':
       ensure  => 'present',
-      require => Class['::srvadmin::repo'],
+      require => [ Class['::srvadmin::repo'], Exec['apt_update'] ],
     }
 
     # Install libssl-dev, as that apparently is a dependency...
