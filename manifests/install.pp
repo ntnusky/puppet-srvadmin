@@ -29,8 +29,7 @@ class srvadmin::install {
 
     package { 'dcism':
       ensure  => 'present',
-      require => Class['::srvadmin::repo'],
-      after   => Package['dcism-osc']
+      require => [ Class['::srvadmin::repo'], Package['dcism-osc'] ],
     }
   } else {
 
