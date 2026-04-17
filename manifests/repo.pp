@@ -13,9 +13,9 @@
 #
 class srvadmin::repo {
 
-  case $::osfamily {
+  case $::facts['os']['family'] {
     'Debian': { include ::srvadmin::repo::ubuntu }
     'RedHat': { include ::srvadmin::repo::redhat }
-    default: { fail( "${::osfamily} is not supported") }
+    default: { fail( "${::facts['os']['family']} is not supported") }
   }
 }

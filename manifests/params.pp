@@ -1,7 +1,7 @@
 # Parameters for srvadmin module
 
 class srvadmin::params {
-  case $::osfamily {
+  case $::facts['os']['family'] {
     'RedHat': {
       $openssldev_package = 'openssl-devel'
     }
@@ -9,7 +9,7 @@ class srvadmin::params {
       $openssldev_package = 'libssl-dev'
     }
     default: {
-      fail("Unsopprted osfamily: ${::osfamily}")
+      fail("Unsopprted osfamily: ${::facts['os']['family']}")
     }
   }
 }

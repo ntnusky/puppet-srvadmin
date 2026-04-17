@@ -43,21 +43,21 @@
 #
 class srvadmin::repo::ubuntu (
   $repositories    = 'main',
-  $release         = $::lsbdistcodename,
+  $release         = $::facts['os']['distro']['codename'],
   $key_source      = 'https://linux.dell.com/repo/pgp_pubkeys/0x1285491434D8786F.asc',
   $key_fingerprint = '42550ABD1E80D7C1BC0BAD851285491434D8786F',
 ) {
 
-  case $::lsbdistcodename {
+  case $::facts['os']['distro']['codename'] {
     'xenial': { $version = '910' }
     'bionic': { $version = '930' }
     'focal': { $version = '950' }
     'jammy': { $version = '11000' }
     'noble': { $version = 'iSM/5400' }
-    default:  { fail("${::lsbdistcodename} is not supported.") }
+    default:  { fail("${::facts['os']['distro']['codename']} is not supported.") }
   }
 
-  $repository_url = "http://linux.dell.com/repo/community/openmanage/${version}/${::lsbdistcodename}"
+  $repository_url = "http://linux.dell.com/repo/community/openmanage/${version}/${::facts['os']['distro']['codename']}"
 
   apt::key { 'dell-key':
     id     => $key_fingerprint,
