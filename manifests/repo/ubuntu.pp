@@ -53,7 +53,7 @@ class srvadmin::repo::ubuntu (
     'bionic': { $version = '930' }
     'focal': { $version = '950' }
     'jammy': { $version = '11000' }
-    'noble': { $version = 'iSM/5400' }
+    'noble': { $version = 'iSM/6100' }
     default:  { fail("${::facts['os']['distro']['codename']} is not supported.") }
   }
 
