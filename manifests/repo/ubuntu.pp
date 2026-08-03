@@ -57,7 +57,7 @@ class srvadmin::repo::ubuntu (
     default:  { fail("${::facts['os']['distro']['codename']} is not supported.") }
   }
 
-  $repository_url = "http://linux.dell.com/repo/community/openmanage/${version}/${::facts['os']['distro']['codename']}"
+  $repository_url = "https://linux.dell.com/repo/community/openmanage/${version}/${::facts['os']['distro']['codename']}"
 
   apt::key { 'dell-key':
     id     => $key_fingerprint,
